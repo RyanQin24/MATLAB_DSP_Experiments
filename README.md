@@ -1,5 +1,5 @@
-#MATLAB DSP Project
-#Project Folders
+__MATLAB DSP Project__
+__Project Folders__
 
 This repository contains MATLAB scripts, datasets, and supporting files used for digital signal processing (DSP) experiments and analysis.
 
