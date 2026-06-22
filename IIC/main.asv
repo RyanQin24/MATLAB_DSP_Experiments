@@ -1,0 +1,41 @@
+data = readmatrix('NewFiae.csv', 'NumHeaderLines', 2);
+dt = 2e-7; 
+t = data(:,1)*dt;
+scl = data(:,2);
+sda = data(:,3);
+
+
+address_payload = zeros(1,7);
+Read_Flag = false;
+ACK1 = false;
+data_payload = zeros(1,8);
+ACK2 = false;
+thresh = 3;
+
+plot(t, scl)
+hold on
+plot(t, sda)
+hold off
+
+
+xlabel('Time (s)')
+ylabel('Voltage (V)')
+legend('SCL', 'SDA')
+grid on
+
+while (scl(index) > thresh)
+    index = index + 1;
+end
+counter = 0;
+
+while counter < 7
+    if scl(index) > thresh;
+        address_payload(counter + 1) = sda(index) > thresh;
+        counter = counter + 1;
+        while(scl(index) > thresh);
+            index = index + 1;
+        end
+    else
+        index = index + 1;
+    end
+end
